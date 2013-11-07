@@ -1,4 +1,18 @@
 Booksite::Application.routes.draw do
+  resources :pages
+
+  resources :abilities
+
+  resources :characters
+
+  resources :heros
+
+  resources :attributes
+
+  resources :items
+
+  resources :books
+
   resources :users
 
   # The priority is based upon order of creation: first created -> highest priority.
