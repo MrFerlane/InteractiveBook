@@ -1,4 +1,14 @@
 Booksite::Application.routes.draw do
+  resources :time_controls
+
+  resources :changes
+
+  resources :conditions
+
+  resources :acts
+
+  resources :actions
+
   resources :pages
 
   resources :abilities

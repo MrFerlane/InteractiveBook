@@ -11,12 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131107143307) do
+ActiveRecord::Schema.define(version: 20131108140526) do
 
   create_table "abilities", force: true do |t|
     t.integer  "character_id"
     t.string   "name"
     t.string   "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "acts", force: true do |t|
+    t.integer  "page_id"
+    t.string   "description"
+    t.integer  "success_page"
+    t.integer  "fail_page"
+    t.integer  "time_fail_page"
+    t.integer  "required_time"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -38,10 +49,31 @@ ActiveRecord::Schema.define(version: 20131107143307) do
     t.datetime "updated_at"
   end
 
+  create_table "changes", force: true do |t|
+    t.integer  "act_id"
+    t.string   "source_class"
+    t.string   "source_name"
+    t.string   "change_class"
+    t.string   "change_way"
+    t.integer  "value"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "characters", force: true do |t|
     t.integer  "book_id"
     t.string   "name"
     t.string   "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "conditions", force: true do |t|
+    t.integer  "act_id"
+    t.string   "source_class"
+    t.string   "source_name"
+    t.string   "condition_class"
+    t.integer  "value"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -59,6 +91,15 @@ ActiveRecord::Schema.define(version: 20131107143307) do
     t.integer  "book_id"
     t.integer  "number"
     t.string   "text"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "time_controls", force: true do |t|
+    t.integer  "book_id"
+    t.integer  "started_time"
+    t.integer  "end_time"
+    t.boolean  "is_time_included"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
