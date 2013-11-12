@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Page:</strong>
+  <%= @act.page_id %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @act.description %>
+</p>
+
+<p>
+  <strong>Success page:</strong>
+  <%= @act.success_page %>
+</p>
+
+<p>
+  <strong>Fail page:</strong>
+  <%= @act.fail_page %>
+</p>
+
+<p>
+  <strong>Time fail page:</strong>
+  <%= @act.time_fail_page %>
+</p>
+
+<p>
+  <strong>Required time:</strong>
+  <%= @act.required_time %>
+</p>
+
+<%= link_to 'Edit', edit_act_path(@act) %> |
+<%= link_to 'Back', acts_path %>

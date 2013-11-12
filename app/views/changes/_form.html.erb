@@ -1,0 +1,41 @@
+<%= form_for(@change) do |f| %>
+  <% if @change.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@change.errors.count, "error") %> prohibited this change from being saved:</h2>
+
+      <ul>
+      <% @change.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :act_id %><br>
+    <%= f.number_field :act_id %>
+  </div>
+  <div class="field">
+    <%= f.label :source_class %><br>
+    <%= f.text_field :source_class %>
+  </div>
+  <div class="field">
+    <%= f.label :source_name %><br>
+    <%= f.text_field :source_name %>
+  </div>
+  <div class="field">
+    <%= f.label :change_class %><br>
+    <%= f.text_field :change_class %>
+  </div>
+  <div class="field">
+    <%= f.label :change_way %><br>
+    <%= f.text_field :change_way %>
+  </div>
+  <div class="field">
+    <%= f.label :value %><br>
+    <%= f.number_field :value %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

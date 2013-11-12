@@ -1,0 +1,33 @@
+<h1>Listing time_controls</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Book</th>
+      <th>Started time</th>
+      <th>End time</th>
+      <th>Is time included</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @time_controls.each do |time_control| %>
+      <tr>
+        <td><%= time_control.book_id %></td>
+        <td><%= time_control.started_time %></td>
+        <td><%= time_control.end_time %></td>
+        <td><%= time_control.is_time_included %></td>
+        <td><%= link_to 'Show', time_control %></td>
+        <td><%= link_to 'Edit', edit_time_control_path(time_control) %></td>
+        <td><%= link_to 'Destroy', time_control, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Time control', new_time_control_path %>

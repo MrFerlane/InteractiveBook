@@ -1,0 +1,35 @@
+<h1>Listing conditions</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Act</th>
+      <th>Source class</th>
+      <th>Source name</th>
+      <th>Condition class</th>
+      <th>Value</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @conditions.each do |condition| %>
+      <tr>
+        <td><%= condition.act_id %></td>
+        <td><%= condition.source_class %></td>
+        <td><%= condition.source_name %></td>
+        <td><%= condition.condition_class %></td>
+        <td><%= condition.value %></td>
+        <td><%= link_to 'Show', condition %></td>
+        <td><%= link_to 'Edit', edit_condition_path(condition) %></td>
+        <td><%= link_to 'Destroy', condition, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Condition', new_condition_path %>

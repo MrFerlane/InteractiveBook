@@ -1,0 +1,33 @@
+<%= form_for(@time_control) do |f| %>
+  <% if @time_control.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@time_control.errors.count, "error") %> prohibited this time_control from being saved:</h2>
+
+      <ul>
+      <% @time_control.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :book_id %><br>
+    <%= f.number_field :book_id %>
+  </div>
+  <div class="field">
+    <%= f.label :started_time %><br>
+    <%= f.number_field :started_time %>
+  </div>
+  <div class="field">
+    <%= f.label :end_time %><br>
+    <%= f.number_field :end_time %>
+  </div>
+  <div class="field">
+    <%= f.label :is_time_included %><br>
+    <%= f.check_box :is_time_included %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

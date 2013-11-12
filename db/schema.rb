@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131108140526) do
+ActiveRecord::Schema.define(version: 20131112115400) do
 
   create_table "abilities", force: true do |t|
     t.integer  "character_id"
@@ -42,9 +42,10 @@ ActiveRecord::Schema.define(version: 20131108140526) do
   end
 
   create_table "books", force: true do |t|
+    t.integer  "user_id"
     t.string   "name"
     t.string   "description"
-    t.integer  "owner_id"
+    t.string   "status"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -113,13 +114,5 @@ ActiveRecord::Schema.define(version: 20131108140526) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  create_table "users_books_relations", id: false, force: true do |t|
-    t.integer "user_id", null: false
-    t.integer "book_id", null: false
-  end
-
-  add_index "users_books_relations", ["book_id"], name: "index_users_books_relations_on_book_id", using: :btree
-  add_index "users_books_relations", ["user_id"], name: "index_users_books_relations_on_user_id", using: :btree
 
 end

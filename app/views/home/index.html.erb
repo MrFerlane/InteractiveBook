@@ -1,0 +1,30 @@
+<h1>Добро пожаловать на новый книжный сайт</h1>
+
+
+<h3>Доступные книги</h3>
+<table>
+  <thead>
+    <tr>
+      <th>Название</th>
+      <th>Описание</th>
+      <th>Автор</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @books.each do |book| %>
+      <tr>
+        <td><%= link_to book.name, { :controller => 'books', :action => 'show', id: book.id } %></td>
+        <td><%= book.description %></td>
+        <td><%= User.where(id: book.user_id).first %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Book', new_book_path %>

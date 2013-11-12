@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  act_id: 1
+  source_class: MyString
+  source_name: MyString
+  change_class: MyString
+  change_way: MyString
+  value: 1
+
+two:
+  act_id: 1
+  source_class: MyString
+  source_name: MyString
+  change_class: MyString
+  change_way: MyString
+  value: 1

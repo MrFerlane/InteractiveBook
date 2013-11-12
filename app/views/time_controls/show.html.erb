@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Book:</strong>
+  <%= @time_control.book_id %>
+</p>
+
+<p>
+  <strong>Started time:</strong>
+  <%= @time_control.started_time %>
+</p>
+
+<p>
+  <strong>End time:</strong>
+  <%= @time_control.end_time %>
+</p>
+
+<p>
+  <strong>Is time included:</strong>
+  <%= @time_control.is_time_included %>
+</p>
+
+<%= link_to 'Edit', edit_time_control_path(@time_control) %> |
+<%= link_to 'Back', time_controls_path %>

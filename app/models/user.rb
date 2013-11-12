@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   has_secure_password
-  has_and_belongs_to_many :books, join_table: 'users_books_relations'
+  has_many :books
   validates :name, :presence => {:message => "User must have a name"},
             :uniqueness => {:message => "User with this name is already exist"}
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i

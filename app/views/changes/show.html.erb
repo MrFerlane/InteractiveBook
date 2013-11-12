@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Act:</strong>
+  <%= @change.act_id %>
+</p>
+
+<p>
+  <strong>Source class:</strong>
+  <%= @change.source_class %>
+</p>
+
+<p>
+  <strong>Source name:</strong>
+  <%= @change.source_name %>
+</p>
+
+<p>
+  <strong>Change class:</strong>
+  <%= @change.change_class %>
+</p>
+
+<p>
+  <strong>Change way:</strong>
+  <%= @change.change_way %>
+</p>
+
+<p>
+  <strong>Value:</strong>
+  <%= @change.value %>
+</p>
+
+<%= link_to 'Edit', edit_change_path(@change) %> |
+<%= link_to 'Back', changes_path %>
