@@ -12,22 +12,22 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :user_id %><br>
-    <%= f.number_field :user_id %>
+    <%= f.label :"ID автора" %>
+    <%= f.number_field :user_id, {value: @current_user_id, disabled: true } %>
   </div>
   <div class="field">
-    <%= f.label :name %><br>
+    <%= f.label :"Название" %><br>
     <%= f.text_field :name %>
   </div>
   <div class="field">
-    <%= f.label :description %><br>
+    <%= f.label :"Краткое описание" %><br>
     <%= f.text_field :description %>
   </div>
   <div class="field">
-    <%= f.label :status %><br>
-    <%= f.text_field :status %>
+    <%= f.label :"Статус" %>
+    <%= f.text_field :status, { value: "draft" , disabled: true } %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Создать черновик"%>
   </div>
 <% end %>

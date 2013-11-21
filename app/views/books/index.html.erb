@@ -1,12 +1,12 @@
-<h1>Listing books</h1>
+<h1>Мои книги</h1>
 
 <table>
   <thead>
     <tr>
-      <th>User</th>
-      <th>Name</th>
-      <th>Description</th>
-      <th>Status</th>
+      <th>Автор</th>
+      <th>Название</th>
+      <th>Описание</th>
+      <th>Статус</th>
       <th></th>
       <th></th>
       <th></th>
@@ -15,8 +15,9 @@
 
   <tbody>
     <% @books.each do |book| %>
+      <% if book.user_id ==
       <tr>
-        <td><%= book.user_id %></td>
+        <td><%= User.wbook.user_id %></td>
         <td><%= book.name %></td>
         <td><%= book.description %></td>
         <td><%= book.status %></td>

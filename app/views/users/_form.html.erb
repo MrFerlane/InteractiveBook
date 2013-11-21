@@ -28,14 +28,18 @@
     <%= f.password_field :password_confirmation %>
   </div>
 
-  <div class="field">
-    <%= f.label :is_admin %><br>
-    <%= f.check_box :is_admin %>
-  </div>
-  <div class="field">
-    <%= f.label :is_writer %><br>
-    <%= f.check_box :is_writer %>
-  </div>
+  <% if current_user %>
+    <% if current_user.is_admin %>
+      <div class="field">
+        <%= f.label :is_admin %><br>
+        <%= f.check_box :is_admin %>
+      </div>
+      <div class="field">
+        <%= f.label :is_writer %><br>
+        <%= f.check_box :is_writer %>
+      </div>
+    <% end %>
+  <% end %>
   <div class="actions">
     <%= f.submit %>
   </div>

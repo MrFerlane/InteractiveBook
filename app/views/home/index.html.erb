@@ -2,6 +2,7 @@
 
 
 <h3>Доступные книги</h3>
+
 <table>
   <thead>
     <tr>
@@ -24,7 +25,10 @@
     <% end %>
   </tbody>
 </table>
-
 <br>
 
-<%= link_to 'New Book', new_book_path %>
+<% if current_user %>
+  <% if current_user.is_writer %>
+        <td><%= link_to "Создать новую книгу", { :controller => 'books', :action => 'new' } %></td>
+  <% end %>
+<% end %>
