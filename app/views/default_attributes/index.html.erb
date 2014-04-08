@@ -1,0 +1,28 @@
+<h1>Доступные характеристики персонажей для книги <%= @book.name %> </h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Характеристика</th>
+      <th>Описание</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @default_attributes.each do |default_attribute| %>
+      <tr>
+        <td><%= default_attribute.name %></td>
+        <td><%= default_attribute.description %></td>
+        <td><%= link_to 'Показать', default_attribute %></td>
+        <td><%= link_to 'Удалить', { controller: 'default_attributes', action: 'destroy', id: default_attribute.id, book_id: @book.id }, method: :delete, data: { confirm: 'Вы уверены?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Добавить характеристику',{ controller: 'default_attributes', action: 'new', book_id: @book.id} %><br>
+<%= link_to 'Назад к книге',  { controller: 'books', action: 'show', id: @book.id } %>

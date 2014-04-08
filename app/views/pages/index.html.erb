@@ -1,12 +1,10 @@
-<h1>Listing pages</h1>
+<h1>Страницы книги '<%= @book.name %>'</h1>
 
 <table>
   <thead>
     <tr>
-      <th>Book</th>
-      <th>Number</th>
-      <th>Text</th>
-      <th></th>
+      <th>Номер страницы</th>
+      <th>Текст</th>
       <th></th>
       <th></th>
     </tr>
@@ -15,12 +13,10 @@
   <tbody>
     <% @pages.each do |page| %>
       <tr>
-        <td><%= page.book_id %></td>
         <td><%= page.number %></td>
         <td><%= page.text %></td>
-        <td><%= link_to 'Show', page %></td>
-        <td><%= link_to 'Edit', edit_page_path(page) %></td>
-        <td><%= link_to 'Destroy', page, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Посмотреть', page %></td>
+        <td><%= link_to 'Удалить', { controller: 'pages', action: 'destroy', id: page.id, book_id: @book.id }, method: :delete, data: { confirm: 'Вы уверены?' }%></td>
       </tr>
     <% end %>
   </tbody>
@@ -28,4 +24,5 @@
 
 <br>
 
-<%= link_to 'New Page', new_page_path %>
+<%= link_to 'Написать новую страницу', { controller: 'pages', action: 'new', book_id: @book.id} %><br>
+<%= link_to 'Назад к книге',  { controller: 'books', action: 'show', id: @book.id } %>

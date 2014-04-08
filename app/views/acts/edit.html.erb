@@ -1,6 +1,6 @@
-<h1>Editing act</h1>
+<h1>Редактировать действия</h1>
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @act %> |
-<%= link_to 'Back', acts_path %>
+<%= link_to 'Назад к действию',  { controller: 'acts', action: 'show', id: @act.id } %>
+

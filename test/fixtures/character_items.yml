@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  character_id: 1
+  default_item_id: 1
+  value: 1
+
+two:
+  character_id: 1
+  default_item_id: 1
+  value: 1

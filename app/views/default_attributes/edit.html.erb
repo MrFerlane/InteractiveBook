@@ -1,0 +1,6 @@
+<h1>Редактировать характеристику</h1>
+
+<%= render 'form' %>
+
+<%= link_to 'Показать предмет', @default_attribute %><br>
+<%= link_to 'Назад к списку предметов', { controller: 'default_attributes', action: 'index', book_id: @default_attribute.book_id }%><br>

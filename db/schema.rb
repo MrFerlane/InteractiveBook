@@ -11,12 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131112115400) do
+ActiveRecord::Schema.define(version: 20140206080417) do
 
   create_table "abilities", force: true do |t|
     t.integer  "character_id"
-    t.string   "name"
-    t.string   "description"
+    t.integer  "default_ability_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -34,9 +33,8 @@ ActiveRecord::Schema.define(version: 20131112115400) do
 
   create_table "attributes", force: true do |t|
     t.integer  "character_id"
-    t.string   "name"
-    t.string   "description"
-    t.integer  "count"
+    t.integer  "default_attribute_id"
+    t.integer  "value"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -61,6 +59,14 @@ ActiveRecord::Schema.define(version: 20131112115400) do
     t.datetime "updated_at"
   end
 
+  create_table "character_items", force: true do |t|
+    t.integer  "character_id"
+    t.integer  "default_item_id"
+    t.integer  "value"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "characters", force: true do |t|
     t.integer  "book_id"
     t.string   "name"
@@ -79,11 +85,34 @@ ActiveRecord::Schema.define(version: 20131112115400) do
     t.datetime "updated_at"
   end
 
-  create_table "items", force: true do |t|
-    t.integer  "character_id"
+  create_table "default_abilities", force: true do |t|
+    t.integer  "book_id"
     t.string   "name"
     t.string   "description"
-    t.integer  "count"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "default_attributes", force: true do |t|
+    t.integer  "book_id"
+    t.string   "name"
+    t.string   "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "default_items", force: true do |t|
+    t.integer  "book_id"
+    t.string   "name"
+    t.string   "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "items", force: true do |t|
+    t.integer  "character_id"
+    t.integer  "default_item_id"
+    t.integer  "value"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

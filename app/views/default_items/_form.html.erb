@@ -1,0 +1,36 @@
+<%= form_for(@default_item) do |f| %>
+  <% if @default_item.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@default_item.errors.count, "error") %> prohibited this default_item from being saved:</h2>
+
+      <ul>
+      <% @default_item.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="hidden">
+      <%= f.text_field :book_id, value: params[:book_id] %>
+  </div>
+
+  <div class="field">
+    <%= f.label :"Предмет" %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :"Описание" %><br>
+    <%= f.text_area :description %>
+  </div>
+  <div class="actions">
+    <%= f.submit "Добавить" %>
+  </div>
+<% end %>
+
+
+<script type="text/javascript">
+    $(window).ready(function(){
+        $(".hidden").hide();
+    });
+</script>

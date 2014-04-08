@@ -1,0 +1,2 @@
+module DefaultAbilitiesHelper
+end

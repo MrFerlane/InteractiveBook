@@ -1,0 +1,13 @@
+
+<p>
+  <strong>Name:</strong>
+  <%= @default_ability.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @default_ability.description %>
+</p>
+
+<%= link_to 'Редактировать', edit_default_ability_path(@default_ability) %><br>
+<%= link_to 'Назад к способностям', { controller: 'default_abilities', action: 'index', book_id: @default_ability.book_id }%><br>

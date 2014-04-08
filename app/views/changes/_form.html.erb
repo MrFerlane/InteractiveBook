@@ -11,10 +11,10 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :act_id %><br>
-    <%= f.number_field :act_id %>
+  <div class="hidden">
+    <%=  f.number_field :act_id , value: @act.id %>
   </div>
+
   <div class="field">
     <%= f.label :source_class %><br>
     <%= f.text_field :source_class %>
@@ -39,3 +39,10 @@
     <%= f.submit %>
   </div>
 <% end %>
+
+<script type="text/javascript">
+    $(window).ready(function(){
+        $(".hidden").hide();
+    });
+</script>
+

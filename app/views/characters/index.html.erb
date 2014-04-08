@@ -1,12 +1,10 @@
-<h1>Listing characters</h1>
+<h1>Доступные персонажи для книги <%= @book.name %> </h1>
 
 <table>
   <thead>
     <tr>
-      <th>Book</th>
-      <th>Name</th>
-      <th>Description</th>
-      <th></th>
+      <th>Имя</th>
+      <th>Описание</th>
       <th></th>
       <th></th>
     </tr>
@@ -15,17 +13,17 @@
   <tbody>
     <% @characters.each do |character| %>
       <tr>
-        <td><%= character.book_id %></td>
         <td><%= character.name %></td>
         <td><%= character.description %></td>
-        <td><%= link_to 'Show', character %></td>
-        <td><%= link_to 'Edit', edit_character_path(character) %></td>
-        <td><%= link_to 'Destroy', character, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Показать', character %></td>
+        <td><%= link_to 'Удалить', { controller: 'characters', action: 'destroy',id: character.id, book_id: @book.id } , method: :delete, data: { confirm: 'Вы уверены?' }%></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
+<%= link_to 'Добавить нового персонажа', { controller: 'characters', action: 'new', book_id: @book.id} %><br>
+<%= link_to 'Назад к книге', { controller: 'books', action: 'show', id: @book.id }%><br>
+
 <br>
 
-<%= link_to 'New Character', new_character_path %>

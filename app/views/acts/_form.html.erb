@@ -11,31 +11,39 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :page_id %><br>
-    <%= f.number_field :page_id %>
+  <div class="hidden">
+    <%=  f.number_field :page_id , value: @page.id %>
   </div>
+
   <div class="field">
-    <%= f.label :description %><br>
+    <%= f.label :"Действие" %><br>
     <%= f.text_field :description %>
   </div>
   <div class="field">
-    <%= f.label :success_page %><br>
-    <%= f.number_field :success_page %>
+    <%= f.label :"Страница в случае успеха" %><br>
+    <%= f.collection_select(:success_page, @all_book_pages , :id, :text, prompt: "Выберите страницу") %>
   </div>
   <div class="field">
-    <%= f.label :fail_page %><br>
-    <%= f.number_field :fail_page %>
+    <%= f.label :"Страница в случае неудачи" %><br>
+    <%= f.collection_select(:fail_page, @all_book_pages , :id, :number, prompt: "Выберите страницу") %>
   </div>
   <div class="field">
-    <%= f.label :time_fail_page %><br>
-    <%= f.number_field :time_fail_page %>
+    <%= f.label :"Страница в случае нарушения условий времени" %><br>
+    <%= f.collection_select(:time_fail_page, @all_book_pages , :id, :number, prompt: "Выберите страницу") %>
   </div>
   <div class="field">
-    <%= f.label :required_time %><br>
+    <%= f.label :"Требуемое время" %><br>
     <%= f.number_field :required_time %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Добавить" %>
   </div>
 <% end %>
+
+
+<script type="text/javascript">
+    $(window).ready(function(){
+        $(".hidden").hide();
+    });
+</script>
+

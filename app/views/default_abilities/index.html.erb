@@ -1,0 +1,28 @@
+<h1>Доступные способности персонажей для книги <%= @book.name %> </h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Способность</th>
+      <th>Описание</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @default_abilities.each do |default_ability| %>
+      <tr>
+        <td><%= default_ability.name %></td>
+        <td><%= default_ability.description %></td>
+        <td><%= link_to 'Показать', default_ability %></td>
+        <td><%= link_to 'Удалить',  { controller: 'default_abilities', action: 'destroy', id: default_ability.id, book_id: @book.id }, method: :delete, data: { confirm: 'Вы уверены?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Добавить способность',{ controller: 'default_abilities', action: 'new', book_id: @book.id} %><br>
+<%= link_to 'Назад к книге',  { controller: 'books', action: 'show', id: @book.id } %>

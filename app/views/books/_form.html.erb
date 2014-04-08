@@ -11,23 +11,16 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :"ID автора" %>
-    <%= f.number_field :user_id, {value: @current_user_id, disabled: true } %>
-  </div>
-  <div class="field">
+    <div class="field">
     <%= f.label :"Название" %><br>
     <%= f.text_field :name %>
   </div>
   <div class="field">
     <%= f.label :"Краткое описание" %><br>
-    <%= f.text_field :description %>
-  </div>
-  <div class="field">
-    <%= f.label :"Статус" %>
-    <%= f.text_field :status, { value: "draft" , disabled: true } %>
+    <%= f.text_area :description %>
   </div>
   <div class="actions">
-    <%= f.submit "Создать черновик"%>
+    <%= f.submit "Добавить"%>
   </div>
 <% end %>
+

@@ -1,0 +1,6 @@
+<h1>Редактировать способность</h1>
+
+<%= render 'form' %>
+
+<%= link_to 'Показать предмет', @default_ability %><br>
+<%= link_to 'Назад к списку предметов', { controller: 'default_items', action: 'index', book_id: @default_ability.book_id }%><br>

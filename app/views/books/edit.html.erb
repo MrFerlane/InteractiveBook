@@ -2,5 +2,6 @@
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @book %> |
-<%= link_to 'Back', books_path %>
+<%= link_to 'Назад', { controller: 'books', action: 'show'} %><br>
+<%= link_to 'Домашняя страница', { controller: 'home', action: 'index'} %>
+

@@ -1,6 +1,5 @@
-<h1>Editing condition</h1>
+<h1>Редактировать условие</h1>
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @condition %> |
-<%= link_to 'Back', conditions_path %>
+<%= link_to 'Назад', { controller: 'conditions', action: 'show', act_id: @condition.act_id } %><br>

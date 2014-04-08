@@ -1,0 +1,12 @@
+<p>
+  <strong>Характеристика:</strong>
+  <%= @default_attribute.name %>
+</p>
+
+<p>
+  <strong>Описание:</strong>
+  <%= @default_attribute.description %>
+</p>
+
+<%= link_to 'Редактировать', edit_default_attribute_path(@default_attribute) %><br>
+<%= link_to 'Назад к характеристикам', { controller: 'default_attributes', action: 'index', book_id: @default_attribute.book_id }%><br>

@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Character:</strong>
+  <%= @character_item.character_id %>
+</p>
+
+<p>
+  <strong>Default item:</strong>
+  <%= @character_item.default_item_id %>
+</p>
+
+<p>
+  <strong>Value:</strong>
+  <%= @character_item.value %>
+</p>
+
+<%= link_to 'Edit', edit_character_item_path(@character_item) %> |
+<%= link_to 'Back', character_items_path %>

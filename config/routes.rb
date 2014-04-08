@@ -1,5 +1,13 @@
 Booksite::Application.routes.draw do
 
+  resources :character_items
+
+  resources :default_items
+
+  resources :default_abilities
+
+  resources :default_attributes
+
   get "log_out" => "sessions#destroy", :as => "log_out"
   get "log_in" => "sessions#new", :as => "log_in"
   get "sign_up" => "users#new", :as => "sign_up"
@@ -8,11 +16,7 @@ Booksite::Application.routes.draw do
 
   resources :books
 
-  get '/books/:book_id/characters/', to: 'characters#index'
-  get '/books/:book_id/characters/:id', to: 'characters#show'
-  put '/books/:book_id/characters', to: 'characters#new'
-  post '/books/:book_id/characters/:id', to: 'characters#update'
-  delete '/books/:book_id/characters/:id', to: 'characters#update'
+  resources :characters
 
   resources :pages
 
@@ -25,12 +29,6 @@ Booksite::Application.routes.draw do
   resources :acts
 
   resources :actions
-
-  resources :abilities
-
-  resources :attributes
-
-  resources :items
 
 
   # The priority is based upon order of creation: first created -> highest priority.

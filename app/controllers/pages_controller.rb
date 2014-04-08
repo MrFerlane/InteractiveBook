@@ -4,21 +4,25 @@ class PagesController < ApplicationController
   # GET /pages
   # GET /pages.json
   def index
-    @pages = Page.all
+    @pages = Page.where(book_id: params[:book_id])
+    @book = Book.where(id: params[:book_id]).first
   end
 
   # GET /pages/1
   # GET /pages/1.json
   def show
+    @book = Book.where(id: @page.book_id).first
   end
 
   # GET /pages/new
   def new
     @page = Page.new
+    @book = Book.where(id: params[:book_id]).first
   end
 
   # GET /pages/1/edit
   def edit
+    @book = Book.where(id: @page.book_id).first
   end
 
   # POST /pages
@@ -27,12 +31,16 @@ class PagesController < ApplicationController
     @page = Page.new(page_params)
 
     respond_to do |format|
-      if @page.save
-        format.html { redirect_to @page, notice: 'Page was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @page }
+      if Page.where(book_id: page_params[:book_id], number: page_params[:number]).blank?
+        if @page.save
+          format.html { redirect_to @page, notice: 'Page was successfully created.' }
+          format.json { render action: 'show', status: :created, location: @page }
+        else
+          format.html { render action: 'new' }
+          format.json { render json: @page.errors, status: :unprocessable_entity }
+        end
       else
-        format.html { render action: 'new' }
-        format.json { render json: @page.errors, status: :unprocessable_entity }
+        format.html { redirect_to({controller: 'pages', action: 'new', book_id: page_params[:book_id]}, notice: "Страница с таким номером уже существует для книги")}
       end
     end
   end
@@ -54,9 +62,10 @@ class PagesController < ApplicationController
   # DELETE /pages/1
   # DELETE /pages/1.json
   def destroy
+    @book = Book.where(id: params[:book_id]).first
     @page.destroy
     respond_to do |format|
-      format.html { redirect_to pages_url }
+      format.html { redirect_to({ controller: 'pages', action: 'index', book_id: @book.id })}
       format.json { head :no_content }
     end
   end

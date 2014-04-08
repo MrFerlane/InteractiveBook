@@ -1,11 +1,6 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Act:</strong>
-  <%= @condition.act_id %>
-</p>
-
-<p>
   <strong>Source class:</strong>
   <%= @condition.source_class %>
 </p>
@@ -25,5 +20,6 @@
   <%= @condition.value %>
 </p>
 
-<%= link_to 'Edit', edit_condition_path(@condition) %> |
-<%= link_to 'Back', conditions_path %>
+<%= link_to 'Редактировать условие', { controller: 'conditions', action: 'edit', act_id: @condition.act_id } %><br>
+<%= link_to 'Назад ко всем условиям', { controller: 'conditions', action: 'index', act_id: @condition.act_id }%>
+

@@ -1,0 +1,13 @@
+
+<p>
+  <strong>Name:</strong>
+  <%= @default_item.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @default_item.description %>
+</p>
+
+<%= link_to 'Редактировать', edit_default_item_path(@default_item) %> <br>
+<%= link_to 'Назад к предметам', { controller: 'default_items', action: 'index', book_id: @default_item.book_id }%><br>

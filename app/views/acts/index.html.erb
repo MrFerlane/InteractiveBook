@@ -1,15 +1,17 @@
-<h1>Listing acts</h1>
+<h1>Страница <%= @page.number %> из книги <%= @book.name %> </h1>
 
+Текст:
+
+<%= @page.text %>
+
+<h1>Действия</h1>
 <table>
   <thead>
-    <tr>
-      <th>Page</th>
-      <th>Description</th>
-      <th>Success page</th>
-      <th>Fail page</th>
-      <th>Time fail page</th>
-      <th>Required time</th>
-      <th></th>
+      <th>Описание</th>
+      <th>Номер страницы при соблюдении условий</th>
+      <th>Номер страницы при несоблюдении условий</th>
+      <th>Номер страницы при нарушении условия времени</th>
+      <th>Требуемое время</th>
       <th></th>
       <th></th>
     </tr>
@@ -18,15 +20,13 @@
   <tbody>
     <% @acts.each do |act| %>
       <tr>
-        <td><%= act.page_id %></td>
         <td><%= act.description %></td>
         <td><%= act.success_page %></td>
         <td><%= act.fail_page %></td>
         <td><%= act.time_fail_page %></td>
         <td><%= act.required_time %></td>
-        <td><%= link_to 'Show', act %></td>
-        <td><%= link_to 'Edit', edit_act_path(act) %></td>
-        <td><%= link_to 'Destroy', act, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Показать', act %></td>
+        <td><%= link_to 'Удалить', { controller: 'acts', action: 'destroy', id: act.id, page_id: @page.id}, data: { confirm: 'Вы уверены?' }, method: :delete  %></td>
       </tr>
     <% end %>
   </tbody>
@@ -34,4 +34,5 @@
 
 <br>
 
-<%= link_to 'New Act', new_act_path %>
+<%= link_to 'Новое действие', { controller: 'acts', action: 'new', page_id: @page.id} %><br>
+<%= link_to 'Назад к страницe',  { controller: 'pages', action: 'show', id: @page.id } %>

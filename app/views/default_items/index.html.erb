@@ -1,0 +1,29 @@
+<h1>Доступные предметы для книги <%= @book.name %> </h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Предмет</th>
+      <th>Описание</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @default_items.each do |default_item| %>
+      <tr>
+        <td><%= default_item.name %></td>
+        <td><%= default_item.description %></td>
+        <td><%= link_to 'Показать', default_item %></td>
+        <td><%= link_to 'Удалить', { controller: 'default_items', action: 'destroy', id: default_item.id, book_id: @book.id }, method: :delete, data: { confirm: 'Вы уверены?' } %></td>
+      </tr>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Добавить предмет',{ controller: 'default_items', action: 'new', book_id: @book.id} %><br>
+<%= link_to 'Назад к книге',  { controller: 'books', action: 'show', id: @book.id } %>

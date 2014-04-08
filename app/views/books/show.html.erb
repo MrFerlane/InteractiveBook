@@ -2,7 +2,7 @@
 
 <p>
   <strong>User:</strong>
-  <%= @book.user_id %>
+  <%= @user_name %>
 </p>
 
 <p>
@@ -20,5 +20,19 @@
   <%= @book.status %>
 </p>
 
-<%= link_to 'Edit', edit_book_path(@book) %> |
-<%= link_to 'Back', books_path %>
+<% if current_user %>
+  <% if @book.user_id == current_user.id %>
+     <%= link_to 'Редактировать название и описание', { controller: 'books', action: 'edit'}, id: @book.id %><br>
+     <%= link_to 'Игровые предметы', { controller: 'default_items', action: 'index', book_id: @book.id }%><br>
+     <%= link_to 'Доступные характеристики', { controller: 'default_attributes', action: 'index', book_id: @book.id }%><br>
+     <%= link_to 'Доступные способности', { controller: 'default_abilities', action: 'index', book_id: @book.id }%><br>
+     <%= link_to 'Персонажи', { controller: 'characters', action: 'index', book_id: @book.id }%><br>
+     <%= link_to 'Страницы', { controller: 'pages', action: 'index', book_id: @book.id }%><br>
+  <% end %>
+<% end %>
+
+<% if @book.status == 'released' %>
+   ССЫЛКА ИГРАТЬ
+<% end %>
+<%= link_to 'Назад к списку книг', { controller: 'home', action: 'index'} %>
+

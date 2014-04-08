@@ -1,6 +1,5 @@
-<h1>Editing change</h1>
+<h1>Редактировать изменения</h1>
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @change %> |
-<%= link_to 'Back', changes_path %>
+<%= link_to 'Назад', { controller: 'changes', action: 'show', act_id: @change.act_id } %><br>

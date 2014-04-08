@@ -1,19 +1,72 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Book:</strong>
-  <%= @character.book_id %>
-</p>
+<h1>Имя персонажа: '<%= @character.name %>' (Книга: '<%= @book.name %>')</h1>
+
+<h2>Описание:</h2>
 
 <p>
-  <strong>Name:</strong>
-  <%= @character.name %>
-</p>
-
-<p>
-  <strong>Description:</strong>
   <%= @character.description %>
 </p>
 
-<%= link_to 'Edit', edit_character_path(@character) %> |
-<%= link_to 'Back', characters_path %>
+<h2>Характеристики персонажа</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Характеристика</th>
+      <th>Значение</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @attributes.each do |attribute| %>
+      <tr>
+        <td><%= attribute.name %></td>
+        <td><%= attribute.count %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<h2>Способности персонажа</h2>
+
+<table>
+
+  <tbody>
+  <% @abilities.each do |ability| %>
+    <tr>
+      <td><%= ability.name %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<h2>Предметы персонажа</h2>
+
+<table>
+  <thead>
+  <tr>
+    <th>Название</th>
+    <th>Количество</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @items.each do |item| %>
+    <tr>
+      <td><%= item.name %></td>
+      <td><%= item.count %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Редактировать имя и описание', edit_character_path(@character) %><br>
+<%= link_to 'Редактировать список предметов', { controller: 'items', action: 'index', character_id: @character.id } %><br>
+<%= link_to 'Редактировать характеристики', { controller: 'attributes', action: 'index', character_id: @character.id } %><br>
+<%= link_to 'Редактировать способности', { controller: 'abilities', action: 'index', character_id: @character.id } %><br>
+<%= link_to 'Назад к списку персонажей',  { controller: 'characters', action: 'index', book_id: @character.book_id } %>

@@ -1,16 +1,18 @@
 class BooksController < ApplicationController
   before_action :set_book, only: [:show, :edit, :update, :destroy]
+  skip_filter :validate_session, only: [:show]
 
   # GET /books
   # GET /books.json
   def index
-    @books = Book.all
-    @current_user_id = current_user
+    @books = Book.where(user_id: current_user.id)
+    @user_name = User.where(id: current_user.id).first.name
   end
 
   # GET /books/1
   # GET /books/1.json
   def show
+    @user_name = User.where(id: @book.user_id).first.name
   end
 
   # GET /books/new
@@ -26,7 +28,7 @@ class BooksController < ApplicationController
   # POST /books.json
   def create
      @book = Book.new(book_params)
-
+     @book.user_id = current_user.id
     respond_to do |format|
       if @book.save
         format.html { redirect_to @book, notice: 'Book was successfully created.' }
@@ -70,6 +72,6 @@ class BooksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def book_params
-      params.require(:book).permit(:user_id, :name, :description, :status)
+      params.require(:book).permit(:user_id, :name, :description, :status )
     end
 end

@@ -1,15 +1,13 @@
-<h1>Listing changes</h1>
+<h1>Лист изменений</h1>
 
 <table>
   <thead>
     <tr>
-      <th>Act</th>
-      <th>Source class</th>
-      <th>Source name</th>
-      <th>Change class</th>
-      <th>Change way</th>
-      <th>Value</th>
-      <th></th>
+      <th>Класс</th>
+      <th>Название</th>
+      <th>Изменение</th>
+      <th>Путь</th>
+      <th>Значение</th>
       <th></th>
       <th></th>
     </tr>
@@ -18,15 +16,13 @@
   <tbody>
     <% @changes.each do |change| %>
       <tr>
-        <td><%= change.act_id %></td>
         <td><%= change.source_class %></td>
         <td><%= change.source_name %></td>
         <td><%= change.change_class %></td>
         <td><%= change.change_way %></td>
         <td><%= change.value %></td>
-        <td><%= link_to 'Show', change %></td>
-        <td><%= link_to 'Edit', edit_change_path(change) %></td>
-        <td><%= link_to 'Destroy', change, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Показать', change %></td>
+        <td><%= link_to 'Удалить', { controller: 'changes', action: 'destroy', id: change.id, act_id: @act.id},  data: { confirm: 'Вы уверены?' }, method: :delete %></td>
       </tr>
     <% end %>
   </tbody>
@@ -34,4 +30,5 @@
 
 <br>
 
-<%= link_to 'New Change', new_change_path %>
+<%= link_to 'Новое изменение', { controller: 'changes', action: 'new', act_id: @act.id} %><br>
+<%= link_to 'Назад к действию',  { controller: 'acts', action: 'show', id: @act.id } %>

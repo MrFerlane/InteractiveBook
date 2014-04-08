@@ -20,7 +20,7 @@
       <tr>
         <td><%= link_to book.name, { :controller => 'books', :action => 'show', id: book.id } %></td>
         <td><%= book.description %></td>
-        <td><%= User.where(id: book.user_id).first %></td>
+        <td><%= User.where(id: book.user_id).first.name %></td>
       </tr>
     <% end %>
   </tbody>
@@ -29,6 +29,7 @@
 
 <% if current_user %>
   <% if current_user.is_writer %>
-        <td><%= link_to "Создать новую книгу", { :controller => 'books', :action => 'new' } %></td>
+        <%= link_to "Создать новую книгу", { :controller => 'books', :action => 'new' } %><br>
+        <%= link_to 'Мои книги', { controller: 'books', action: 'index'} %><br>
   <% end %>
 <% end %>

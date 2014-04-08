@@ -30,5 +30,5 @@
   <%= @change.value %>
 </p>
 
-<%= link_to 'Edit', edit_change_path(@change) %> |
-<%= link_to 'Back', changes_path %>
+<%= link_to 'Редактировать условие', { controller: 'changes', action: 'edit', act_id: @change.act_id } %><br>
+<%= link_to 'Назад ко всем условиям', { controller: 'changes', action: 'index', act_id: @change.act_id }%>

@@ -1,19 +1,20 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Book:</strong>
-  <%= @page.book_id %>
+  <strong>Книга:</strong>
+  <%=  @book.name %>
 </p>
 
 <p>
-  <strong>Number:</strong>
+  <strong>Номер страницы:</strong>
   <%= @page.number %>
 </p>
 
 <p>
-  <strong>Text:</strong>
+  <strong>Текст:</strong>
   <%= @page.text %>
 </p>
 
-<%= link_to 'Edit', edit_page_path(@page) %> |
-<%= link_to 'Back', pages_path %>
+<%= link_to 'Редактировать текст', { controller: 'pages', action: 'edit', book_id: @book.id } %><br>
+<%= link_to 'Смотреть и редактировать действия', { controller: 'acts', action: 'index', page_id: @page.id } %><br>
+<%= link_to 'Назад к страницам', { controller: 'pages', action: 'index', book_id: @book.id }%>

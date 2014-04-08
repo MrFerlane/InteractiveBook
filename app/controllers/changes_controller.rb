@@ -4,7 +4,8 @@ class ChangesController < ApplicationController
   # GET /changes
   # GET /changes.json
   def index
-    @changes = Change.all
+    @act = Act.where(id: params[:act_id]).first
+    @changes = Change.where(act_id: @act.id)
   end
 
   # GET /changes/1
@@ -14,16 +15,19 @@ class ChangesController < ApplicationController
 
   # GET /changes/new
   def new
+    @act = Act.where(id: params[:act_id]).first
     @change = Change.new
   end
 
   # GET /changes/1/edit
   def edit
+    @act = Act.where(id: params[:act_id]).first
   end
 
   # POST /changes
   # POST /changes.json
   def create
+    @act = Act.where(id: params[:act_id]).first
     @change = Change.new(change_params)
 
     respond_to do |format|
@@ -54,9 +58,10 @@ class ChangesController < ApplicationController
   # DELETE /changes/1
   # DELETE /changes/1.json
   def destroy
+    @act = Act.where(id: params[:act_id]).first
     @change.destroy
     respond_to do |format|
-      format.html { redirect_to changes_url }
+      format.html { redirect_to({ controller: 'changes', action: 'index', act_id: @act.id })}
       format.json { head :no_content }
     end
   end

@@ -30,5 +30,7 @@
   <%= @act.required_time %>
 </p>
 
-<%= link_to 'Edit', edit_act_path(@act) %> |
-<%= link_to 'Back', acts_path %>
+<%= link_to 'Редактировать действие', { controller: 'acts', action: 'edit', page_id: @act.page_id } %><br>
+<%= link_to 'Смотреть и редактировать условия', { controller: 'conditions', action: 'index', act_id: @act.id } %><br>
+<%= link_to 'Смотреть и редактировать изменения при переходе', { controller: 'changes', action: 'index', act_id: @act.id } %><br>
+<%= link_to 'Назад к действиям', { controller: 'acts', action: 'index', page_id: @act.page_id }%>

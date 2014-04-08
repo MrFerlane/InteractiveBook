@@ -11,27 +11,34 @@
     </div>
   <% end %>
 
+
+  <div class="hidden">
+    <%=  f.number_field :act_id , value: @act.id %>
+  </div>
+
   <div class="field">
-    <%= f.label :act_id %><br>
-    <%= f.number_field :act_id %>
+    <%= f.label :"Класс" %><br>
+    <%= f.select(:source_class, @source_classes ) %>
   </div>
   <div class="field">
-    <%= f.label :source_class %><br>
-    <%= f.text_field :source_class %>
-  </div>
-  <div class="field">
-    <%= f.label :source_name %><br>
+    <%= f.label :"Название" %><br>
     <%= f.text_field :source_name %>
   </div>
   <div class="field">
-    <%= f.label :condition_class %><br>
-    <%= f.text_field :condition_class %>
+    <%= f.label :"Условие" %><br>
+    <%= f.select(:condition_class,  @condition_classes) %>
   </div>
   <div class="field">
-    <%= f.label :value %><br>
+    <%= f.label :"Значение" %><br>
     <%= f.number_field :value %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Добавить" %>
   </div>
 <% end %>
+
+<script type="text/javascript">
+    $(window).ready(function(){
+        $(".hidden").hide();
+    });
+</script>
