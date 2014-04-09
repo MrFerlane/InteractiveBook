@@ -12,9 +12,9 @@ class CharactersController < ApplicationController
   # GET /characters/1.json
   def show
     @book = Book.where(id: @character.book_id).first
-    @attributes = Attribute.where(character_id: @character.id)
-    @abilities = Ability.where(character_id: @character.id)
-    @items = Item.where(character_id: @character.id)
+    @character_attributes = CharacterAttribute.where(character_id: @character.id)
+    @character_abilities = CharacterAbility.where(character_id: @character.id)
+    @character_items = CharacterItem.where(character_id: @character.id)
   end
 
   # GET /characters/new
@@ -32,12 +32,9 @@ class CharactersController < ApplicationController
   # POST /characters.json
   def create
     @character = Character.new(character_params)
-
+    flash[:notice] = @character
     respond_to do |format|
       if @character.save
-        @default_attributes.each do |default_attribute|
-          Attribute.create(character_id: @character.id, default_attribute_id: default_attribute.id , value: 0)
-        end
         format.html { redirect_to @character, notice: 'Character was successfully created.' }
         format.json { render action: 'show', status: :created, location: @character }
       else

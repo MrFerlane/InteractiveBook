@@ -11,14 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140206080417) do
-
-  create_table "abilities", force: true do |t|
-    t.integer  "character_id"
-    t.integer  "default_ability_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
+ActiveRecord::Schema.define(version: 20140409084725) do
 
   create_table "acts", force: true do |t|
     t.integer  "page_id"
@@ -27,14 +20,6 @@ ActiveRecord::Schema.define(version: 20140206080417) do
     t.integer  "fail_page"
     t.integer  "time_fail_page"
     t.integer  "required_time"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "attributes", force: true do |t|
-    t.integer  "character_id"
-    t.integer  "default_attribute_id"
-    t.integer  "value"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -54,6 +39,21 @@ ActiveRecord::Schema.define(version: 20140206080417) do
     t.string   "source_name"
     t.string   "change_class"
     t.string   "change_way"
+    t.integer  "value"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "character_abilities", force: true do |t|
+    t.integer  "character_id"
+    t.integer  "default_ability_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "character_attributes", force: true do |t|
+    t.integer  "character_id"
+    t.integer  "default_attribute_id"
     t.integer  "value"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -105,14 +105,6 @@ ActiveRecord::Schema.define(version: 20140206080417) do
     t.integer  "book_id"
     t.string   "name"
     t.string   "description"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "items", force: true do |t|
-    t.integer  "character_id"
-    t.integer  "default_item_id"
-    t.integer  "value"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

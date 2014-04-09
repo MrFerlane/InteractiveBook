@@ -4,8 +4,8 @@ class CharacterItemsController < ApplicationController
   # GET /character_items
   # GET /character_items.json
   def index
-    @character = Character.where(id: params[:character_id])
-    @character_items = CharacterItem.where(character_id: @character.id])
+    @character = Character.where(id: params[:character_id]).first
+    @character_items = CharacterItem.where(character_id: @character.id)
   end
 
   # GET /character_items/1
@@ -16,24 +16,26 @@ class CharacterItemsController < ApplicationController
   # GET /character_items/new
   def new
     @character_item = CharacterItem.new
+    @character = Character.where(id: params[:character_id]).first
+    @book_default_items = DefaultItem.where(book_id: @character.book_id )
   end
 
   # GET /character_items/1/edit
   def edit
+    @character = Character.where(id: params[:character_id]).first
+    @book_default_items = DefaultItem.where(book_id: @character.book_id )
   end
 
   # POST /character_items
   # POST /character_items.json
   def create
     @character_item = CharacterItem.new(character_item_params)
-
     respond_to do |format|
       if @character_item.save
         format.html { redirect_to @character_item, notice: 'Character item was successfully created.' }
         format.json { render action: 'show', status: :created, location: @character_item }
       else
-        format.html { render action: 'new' }
-        format.json { render json: @character_item.errors, status: :unprocessable_entity }
+        format.html { redirect_to  action: 'new', character_id: @character_item.character_id, errors: @character_item.errors.full_messages()  }
       end
     end
   end
@@ -41,12 +43,13 @@ class CharacterItemsController < ApplicationController
   # PATCH/PUT /character_items/1
   # PATCH/PUT /character_items/1.json
   def update
+    @character = Character.where(id: params[:character_id]).first
     respond_to do |format|
       if @character_item.update(character_item_params)
         format.html { redirect_to @character_item, notice: 'Character item was successfully updated.' }
         format.json { head :no_content }
       else
-        format.html { render action: 'edit' }
+        format.html { render action: 'edit', character_id: @character_item.character_id }
         format.json { render json: @character_item.errors, status: :unprocessable_entity }
       end
     end
@@ -55,9 +58,10 @@ class CharacterItemsController < ApplicationController
   # DELETE /character_items/1
   # DELETE /character_items/1.json
   def destroy
+    @character = Character.where(id: params[:character_id]).first
     @character_item.destroy
     respond_to do |format|
-      format.html { redirect_to character_items_url }
+      format.html { redirect_to({ controller: 'character_items', action: 'index', character_id: @character.id }) }
       format.json { head :no_content }
     end
   end

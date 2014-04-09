@@ -1,29 +1,31 @@
 <%= form_for(@character_item) do |f| %>
-  <% if @character_item.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@character_item.errors.count, "error") %> prohibited this character_item from being saved:</h2>
-
-      <ul>
-      <% @character_item.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
+  <% if params[:errors] %>
+          <% params[:errors].each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
   <% end %>
 
+  <div class="hidden">
+        <%= f.text_field :character_id, value: params[:character_id] %>
+   </div>
+
   <div class="field">
-    <%= f.label :character_id %><br>
-    <%= f.number_field :character_id %>
+      <%= f.label :"Предмет" %><br>
+      <%= f.collection_select :default_item_id, @book_default_items, :id, :name %>
   </div>
+
   <div class="field">
-    <%= f.label :default_item_id %><br>
-    <%= f.number_field :default_item_id %>
-  </div>
-  <div class="field">
-    <%= f.label :value %><br>
+    <%= f.label :"Количество" %><br>
     <%= f.number_field :value %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Добавить" %>
   </div>
 <% end %>
+
+
+<script type="text/javascript">
+    $(window).ready(function(){
+        $(".hidden").hide();
+    });
+</script>

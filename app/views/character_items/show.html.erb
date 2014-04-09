@@ -1,19 +1,24 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Character:</strong>
-  <%= @character_item.character_id %>
+  <strong>Персонаж</strong>
+  <%= @character_item.character.name %>
 </p>
 
 <p>
-  <strong>Default item:</strong>
-  <%= @character_item.default_item_id %>
+  <strong>Название</strong>
+  <%= @character_item.default_item.name %>
 </p>
 
 <p>
-  <strong>Value:</strong>
+    <strong>Описание</strong>
+    <%= @character_item.default_item.description %>
+</p>
+
+<p>
+  <strong>Количество</strong>
   <%= @character_item.value %>
 </p>
 
-<%= link_to 'Edit', edit_character_item_path(@character_item) %> |
-<%= link_to 'Back', character_items_path %>
+<%= link_to 'Редактировать', { controller: 'character_items', action: 'edit', character_id: @character_item.character_id }%><br>
+<%= link_to 'Назад к предметам', { controller: 'character_items', action: 'index', character_id: @character_item.character_id }%><br>

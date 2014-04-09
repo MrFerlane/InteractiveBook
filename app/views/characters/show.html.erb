@@ -19,10 +19,10 @@
   </thead>
 
   <tbody>
-    <% @attributes.each do |attribute| %>
+    <% @character_attributes.each do |attribute| %>
       <tr>
-        <td><%= attribute.name %></td>
-        <td><%= attribute.count %></td>
+        <td><%= attribute.default_attibute.name %></td>
+        <td><%= attribute.value %></td>
       </tr>
     <% end %>
   </tbody>
@@ -35,9 +35,9 @@
 <table>
 
   <tbody>
-  <% @abilities.each do |ability| %>
+  <% @character_abilities.each do |ability| %>
     <tr>
-      <td><%= ability.name %></td>
+      <td><%= ability.default_ability.name %></td>
     </tr>
   <% end %>
   </tbody>
@@ -54,10 +54,10 @@
   </thead>
 
   <tbody>
-  <% @items.each do |item| %>
+  <% @character_items.each do |item| %>
     <tr>
-      <td><%= item.name %></td>
-      <td><%= item.count %></td>
+      <td><%= item.default_item.name %></td>
+      <td><%= item.value %></td>
     </tr>
   <% end %>
   </tbody>
@@ -66,7 +66,7 @@
 <br>
 
 <%= link_to 'Редактировать имя и описание', edit_character_path(@character) %><br>
-<%= link_to 'Редактировать список предметов', { controller: 'items', action: 'index', character_id: @character.id } %><br>
-<%= link_to 'Редактировать характеристики', { controller: 'attributes', action: 'index', character_id: @character.id } %><br>
-<%= link_to 'Редактировать способности', { controller: 'abilities', action: 'index', character_id: @character.id } %><br>
+<%= link_to 'Редактировать список предметов', { controller: 'character_items', action: 'index', character_id: @character.id } %><br>
+<%= link_to 'Редактировать характеристики', { controller: 'character_attributes', action: 'index', character_id: @character.id } %><br>
+<%= link_to 'Редактировать способности', { controller: 'character_abilities', action: 'index', character_id: @character.id } %><br>
 <%= link_to 'Назад к списку персонажей',  { controller: 'characters', action: 'index', book_id: @character.book_id } %>

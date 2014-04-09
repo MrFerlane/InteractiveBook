@@ -1,5 +1,9 @@
 Booksite::Application.routes.draw do
 
+  resources :character_attributes
+
+  resources :character_abilities
+
   resources :character_items
 
   resources :default_items
