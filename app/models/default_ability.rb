@@ -1,3 +1,4 @@
 class DefaultAbility < ActiveRecord::Base
-  has_many :abilities
+  belongs_to :book
+  has_many :character_abilities
 end

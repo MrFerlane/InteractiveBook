@@ -19,10 +19,10 @@
   </thead>
 
   <tbody>
-    <% @character_attributes.each do |attribute| %>
+    <% @character_attributes.each do |character_attribute| %>
       <tr>
-        <td><%= attribute.default_attibute.name %></td>
-        <td><%= attribute.value %></td>
+        <td><%= character_attribute.default_attribute.name %></td>
+        <td><%= character_attribute.value %></td>
       </tr>
     <% end %>
   </tbody>
@@ -35,9 +35,9 @@
 <table>
 
   <tbody>
-  <% @character_abilities.each do |ability| %>
+  <% @character_abilities.each do |character_abilitiy| %>
     <tr>
-      <td><%= ability.default_ability.name %></td>
+      <td><%= character_abilitiy.default_ability.name %></td>
     </tr>
   <% end %>
   </tbody>
@@ -54,10 +54,10 @@
   </thead>
 
   <tbody>
-  <% @character_items.each do |item| %>
+  <% @character_items.each do |character_item| %>
     <tr>
-      <td><%= item.default_item.name %></td>
-      <td><%= item.value %></td>
+      <td><%= character_item.default_item.name %></td>
+      <td><%= character_item.value %></td>
     </tr>
   <% end %>
   </tbody>

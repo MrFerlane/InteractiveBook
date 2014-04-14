@@ -1,6 +1,6 @@
-<h1>Editing character_item</h1>
+<h1>Редактировать количество предметов <%= @character_item.default_item.name %> </h1>
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @character_item %> |
-<%= link_to 'Back', character_items_path %>
+<%= link_to 'Описание', @character_item %><br>
+<%= link_to 'Назад к предметам', { controller: 'character_items', action: 'index', character_id: @character_item.character_id }%><br>

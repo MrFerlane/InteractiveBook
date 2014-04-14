@@ -1,31 +1,25 @@
 <h1>Предметы перcонажа <%= @character.name %> </h1>
 
-<table>
-    <thead>
-    <tr>
-        <th>Предмет</th>
-        <th>Описание</th>
-        <th>Количество</th>
-        <th></th>
-        <th></th>
-    </tr>
-    </thead>
-
-    <tbody>
-    <% @character_items.each do |character_item| %>
+<% if !@character_items.blank? %>
+    <table>
+        <thead>
         <tr>
-            <td><%= character_item.default_item.name %></td>
-            <td><%= character_item.default_item.description %></td>
-            <td><%= character_item.value %></td>
-            <td><%= link_to 'Показать', character_item %></td>
-            <td><%= link_to 'Удалить', { controller: 'character_items', action: 'destroy', id: character_item.id, character_id: @character.id }, method: :delete, data: { confirm: 'Вы уверены?' } %></td>
+            <th>Предмет</th>
+            <th>Количество</th>
         </tr>
-        </tr>
-    <% end %>
-    </tbody>
-</table>
+        </thead>
+
+        <tbody>
+        <% @character_items.each do |character_item| %>
+            <tr>
+                <td><%= link_to character_item.default_item.name, character_item %></td>
+                <td><%= character_item.value %></td>
+            </tr>
+        <% end %>
+        </tbody>
+    </table>
+<% end %>
 
 <br>
 
-<%= link_to 'Добавить предмет',{ controller: 'character_items', action: 'new', character_id: @character.id} %><br>
-<%= link_to 'Назад к персонажу',  { controller: 'characters', action: 'show', id: @character.id } %>
+<%= link_to 'Назад к персонажу', {controller: 'characters', action: 'show', id: @character.id} %>

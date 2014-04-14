@@ -1,10 +1,10 @@
 class DefaultItemsController < ApplicationController
   before_action :set_default_item, only: [:show, :edit, :update, :destroy]
+  before_action :get_book, only: [:index, :new, :destroy]
 
   # GET /default_items
   # GET /default_items.json
   def index
-    @book = Book.where(id: params[:book_id]).first
     @default_items = DefaultItem.where(book_id: @book.id)
   end
 
@@ -15,7 +15,6 @@ class DefaultItemsController < ApplicationController
 
   # GET /default_items/new
   def new
-    @book = Book.where(id: params[:book_id]).first
     @default_item = DefaultItem.new
   end
 
@@ -31,6 +30,10 @@ class DefaultItemsController < ApplicationController
 
     respond_to do |format|
       if @default_item.save
+        bookCharacters = Character.where(book_id: @default_item.book_id)
+        bookCharacters.each do |character|
+          CharacterItem.create(character_id: character.id, default_item_id: @default_item.id, value: 0)
+        end
         format.html { redirect_to @default_item, notice: 'Default item was successfully created.' }
         format.json { render action: 'show', status: :created, location: @default_item }
       else
@@ -57,8 +60,8 @@ class DefaultItemsController < ApplicationController
   # DELETE /default_items/1
   # DELETE /default_items/1.json
   def destroy
-    @book = Book.where(id: params[:book_id]).first
     @default_item.destroy
+    CharacterItem.where(default_item_id: @default_item.id).destroy_all
     respond_to do |format|
       format.html { redirect_to({ controller: 'default_items', action: 'index', book_id: @book.id }) }
       format.json { head :no_content }
@@ -67,6 +70,11 @@ class DefaultItemsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
+
+    def get_book
+      @book = Book.where(id: params[:book_id]).first
+    end
+
     def set_default_item
       @default_item = DefaultItem.find(params[:id])
     end

@@ -5,15 +5,6 @@
           <% end %>
   <% end %>
 
-  <div class="hidden">
-        <%= f.text_field :character_id, value: params[:character_id] %>
-   </div>
-
-  <div class="field">
-      <%= f.label :"Предмет" %><br>
-      <%= f.collection_select :default_item_id, @book_default_items, :id, :name %>
-  </div>
-
   <div class="field">
     <%= f.label :"Количество" %><br>
     <%= f.number_field :value %>

@@ -1,3 +1,4 @@
 class DefaultItem < ActiveRecord::Base
-  has_many :items
+  belongs_to :book
+  has_many :character_items
 end

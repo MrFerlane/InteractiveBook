@@ -1,10 +1,10 @@
 class DefaultAttributesController < ApplicationController
   before_action :set_default_attribute, only: [:show, :edit, :update, :destroy]
+  before_action :get_book, only: [:index, :new, :destroy]
 
   # GET /default_attributes
   # GET /default_attributes.json
   def index
-    @book = Book.where(id: params[:book_id]).first
     @default_attributes = DefaultAttribute.where(book_id: @book.id)
   end
 
@@ -15,7 +15,6 @@ class DefaultAttributesController < ApplicationController
 
   # GET /default_attributes/new
   def new
-    @book = Book.where(id: params[:book_id]).first
     @default_attribute = DefaultAttribute.new
   end
 
@@ -31,6 +30,10 @@ class DefaultAttributesController < ApplicationController
 
     respond_to do |format|
       if @default_attribute.save
+        bookCharacters = Character.where(book_id: @default_attribute.book_id)
+        bookCharacters.each do |character|
+          CharacterAttribute.create(character_id: character.id, default_attribute_id: @default_attribute.id, value: 0)
+        end
         format.html { redirect_to @default_attribute, notice: 'Default attribute was successfully created.' }
         format.json { render action: 'show', status: :created, location: @default_attribute }
       else
@@ -57,8 +60,8 @@ class DefaultAttributesController < ApplicationController
   # DELETE /default_attributes/1
   # DELETE /default_attributes/1.json
   def destroy
-    @book = Book.where(id: params[:book_id]).first
     @default_attribute.destroy
+    CharacterAttribute.where(default_attribute_id: @default_attribute.id).destroy_all
     respond_to do |format|
       format.html { redirect_to({ controller: 'default_attributes', action: 'index', book_id: @book.id }) }
       format.json { head :no_content }
@@ -67,6 +70,10 @@ class DefaultAttributesController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
+    def get_book
+      @book = Book.where(id: params[:book_id]).first
+    end
+
     def set_default_attribute
       @default_attribute = DefaultAttribute.find(params[:id])
     end

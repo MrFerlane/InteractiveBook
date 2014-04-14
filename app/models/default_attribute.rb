@@ -1,3 +1,4 @@
 class DefaultAttribute < ActiveRecord::Base
-  has_many :attributes
+  belongs_to :book
+  has_many :character_attributes
 end
