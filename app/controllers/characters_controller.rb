@@ -1,17 +1,16 @@
 class CharactersController < ApplicationController
   before_action :set_character, only: [:show, :edit, :update, :destroy]
+  before_action :get_book, only: [:index, :destroy]
 
   # GET /characters
   # GET /characters.json
   def index
     @characters = Character.where(book_id: params[:book_id])
-    @book = Book.where(id: params[:book_id]).first
   end
 
   # GET /characters/1
   # GET /characters/1.json
   def show
-    @book = Book.where(id: @character.book_id).first
     @character_attributes = CharacterAttribute.where(character_id: @character.id)
     @character_abilities = CharacterAbility.where(character_id: @character.id)
     @character_items = CharacterItem.where(character_id: @character.id)
@@ -35,6 +34,14 @@ class CharactersController < ApplicationController
     flash[:notice] = @character
     respond_to do |format|
       if @character.save
+        bookAttributes = DefaultAttribute.where(book_id: @character.book_id)
+        bookItems = DefaultItem.where(book_id: @character.book_id)
+        bookAttributes.each do |default_attribute|
+          CharacterAttribute.create(character_id: @character.id, default_attribute_id: default_attribute.id, value: 0)
+        end
+        bookItems.each do |default_item|
+          CharacterItem.create(character_id: @character.id, default_item_id: default_item.id, value: 0)
+        end
         format.html { redirect_to @character, notice: 'Character was successfully created.' }
         format.json { render action: 'show', status: :created, location: @character }
       else
@@ -62,8 +69,10 @@ class CharactersController < ApplicationController
   # DELETE /characters/1
   # DELETE /characters/1.json
   def destroy
-    @book = Book.where(id: params[:book_id]).first
     @character.destroy
+    CharacterAttribute.where(character_id: @character.id).destroy_all
+    CharacterAbility.where(character_id: @character.id).destroy_all
+    CharacterItem.where(character_id: @character.id).destroy_all
     respond_to do |format|
       format.html { redirect_to({ controller: 'characters', action: 'index', book_id: @book.id }) }
       format.json { head :no_content }
@@ -72,6 +81,11 @@ class CharactersController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
+
+    def get_book
+      @book = Book.where(id: params[:book_id]).first
+    end
+
     def set_character
       @character = Character.find(params[:id])
     end

@@ -21,7 +21,7 @@
   </div>
   <div class="field">
     <%= f.label :"Страница в случае успеха" %><br>
-    <%= f.collection_select(:success_page, @all_book_pages , :id, :text, prompt: "Выберите страницу") %>
+    <%= f.collection_select(:success_page, @all_book_pages , :id, :number, prompt: "Выберите страницу") %>
   </div>
   <div class="field">
     <%= f.label :"Страница в случае неудачи" %><br>

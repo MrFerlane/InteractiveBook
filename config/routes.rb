@@ -1,5 +1,17 @@
 Booksite::Application.routes.draw do
 
+  resources :ability_changes
+
+  resources :attribute_changes
+
+  resources :item_changes
+
+  resources :ability_conditions
+
+  resources :attribute_conditions
+
+  resources :item_conditions
+
   resources :character_attributes
 
   resources :character_abilities
@@ -27,8 +39,6 @@ Booksite::Application.routes.draw do
   resources :time_controls
 
   resources :changes
-
-  resources :conditions
 
   resources :acts
 

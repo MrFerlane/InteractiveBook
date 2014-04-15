@@ -2,7 +2,7 @@
 
 <p>
   <strong>Page:</strong>
-  <%= @act.page_id %>
+  <%= @act.page.text %>
 </p>
 
 <p>
@@ -31,6 +31,10 @@
 </p>
 
 <%= link_to 'Редактировать действие', { controller: 'acts', action: 'edit', page_id: @act.page_id } %><br>
-<%= link_to 'Смотреть и редактировать условия', { controller: 'conditions', action: 'index', act_id: @act.id } %><br>
-<%= link_to 'Смотреть и редактировать изменения при переходе', { controller: 'changes', action: 'index', act_id: @act.id } %><br>
+<%= link_to 'Смотреть и редактировать условия по предметам', { controller: 'item_conditions', action: 'index', act_id: @act.id } %><br>
+<%= link_to 'Смотреть и редактировать условия по характеристикам', { controller: 'attribute_conditions', action: 'index', act_id: @act.id } %><br>
+<%= link_to 'Смотреть и редактировать условия по способностям', { controller: 'ability_conditions', action: 'index', act_id: @act.id } %><br>
+<%= link_to 'Смотреть и редактировать изменения при переходе по предметам', { controller: 'item_changes', action: 'index', act_id: @act.id } %><br>
+<%= link_to 'Смотреть и редактировать изменения при переходе по характеристикам', { controller: 'attribute_changes', action: 'index', act_id: @act.id } %><br>
+<%= link_to 'Смотреть и редактировать изменения при переходе по способностям', { controller: 'ability_changes', action: 'index', act_id: @act.id } %><br>
 <%= link_to 'Назад к действиям', { controller: 'acts', action: 'index', page_id: @act.page_id }%>

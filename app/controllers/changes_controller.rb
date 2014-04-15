@@ -74,6 +74,6 @@ class ChangesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def change_params
-      params.require(:change).permit(:act_id, :source_class, :source_name, :change_class, :change_way, :value)
+      params.require(:change).permit(:act_id, :source_class, :source_id, :change_class, :change_way, :value)
     end
 end
